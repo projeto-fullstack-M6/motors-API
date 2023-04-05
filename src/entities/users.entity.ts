@@ -34,7 +34,7 @@ export class Users {
   @Column({ length: 250 })
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   description: string;
 
   @Column({ default: true })
