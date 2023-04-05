@@ -2,11 +2,11 @@ import { z } from "zod";
 import { userResponseSerializer } from "./users.serializer";
 import { announcementResponseSerializer } from "./announcements.serializer";
 
-export const createCommentsSerializer = z.object({
-  complement: z.string().trim().min(15),
+export const createCommentSerializer = z.object({
+  text: z.string().trim().min(15),
 });
 
-export const commentsResponseSerializer = createCommentsSerializer.extend({
+export const commentResponseSerializer = createCommentSerializer.extend({
   id: z.string().uuid(),
   createdAt: z.date(),
   updatedAt: z.date(),
@@ -14,4 +14,4 @@ export const commentsResponseSerializer = createCommentsSerializer.extend({
   announcement: announcementResponseSerializer,
 });
 
-export const updateCommentsSerializer = createCommentsSerializer.partial();
+export const updateCommentSerializer = createCommentSerializer.partial();

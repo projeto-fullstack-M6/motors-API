@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { userResponseSerializer } from "./users.serializer";
 
-export const createAddressesSerializer = z.object({
+export const createAddressSerializer = z.object({
   zipcode: z.string().min(8).max(8).trim(),
   state: z.string().min(2).trim(),
   city: z.string().min(2).trim(),
@@ -10,9 +10,9 @@ export const createAddressesSerializer = z.object({
   complement: z.string().trim().nullable(),
 });
 
-export const addressesResponseSerializer = createAddressesSerializer.extend({
+export const addressResponseSerializer = createAddressSerializer.extend({
   id: z.string().uuid(),
   user: userResponseSerializer,
 });
 
-export const updateAddressesSerializer = createAddressesSerializer.partial();
+export const updateAddressSerializer = createAddressSerializer.partial();
