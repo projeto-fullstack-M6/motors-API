@@ -13,6 +13,7 @@ import {
   JoinColumn,
 } from "typeorm";
 import { Addresses } from "./addresses.entity";
+import { Announcements } from "./announcement.entity";
 
 @Entity("users")
 export class Users {
@@ -69,4 +70,7 @@ export class Users {
   @OneToOne(() => Addresses, (address) => address.user)
   @JoinColumn()
   address: Addresses;
+
+  @OneToMany(() => Announcements, (announcement) => announcement.user)
+  announcement: Announcements;
 }
