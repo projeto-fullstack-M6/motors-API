@@ -14,6 +14,7 @@ import {
 } from "typeorm";
 import { Addresses } from "./addresses.entity";
 import { Announcements } from "./announcement.entity";
+import { Comments } from "./comments.entity";
 
 @Entity("users")
 export class Users {
@@ -73,4 +74,7 @@ export class Users {
 
   @OneToMany(() => Announcements, (announcement) => announcement.user)
   announcement: Announcements;
+
+  @OneToMany(() => Comments, (comment) => comment.user)
+  comment: Comments;
 }

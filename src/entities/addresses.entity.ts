@@ -21,7 +21,7 @@ export class Addresses {
   @Column({ length: 8 })
   number: string;
 
-  @Column({ length: 200 })
+  @Column({ length: 200, nullable: true })
   complement: string;
 
   @OneToOne(() => Users, (user) => user.address)

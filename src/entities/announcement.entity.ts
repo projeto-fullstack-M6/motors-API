@@ -8,6 +8,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { Users } from "./users.entity";
+import { Comments } from "./comments.entity";
 
 @Entity("announcement")
 export class Announcements {
@@ -35,7 +36,7 @@ export class Announcements {
   @Column({ type: "decimal", precision: 15, scale: 2, default: 0 })
   price: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   description: string;
 
   @Column({ default: true })
