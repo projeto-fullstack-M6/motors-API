@@ -73,8 +73,8 @@ export class Users {
   address: Addresses;
 
   @OneToMany(() => Announcements, (announcement) => announcement.user)
-  announcement: Announcements;
+  announcement: Announcements[];
 
   @OneToMany(() => Comments, (comment) => comment.user)
-  comment: Comments;
+  comment: Comments[];
 }

@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Users } from "./users.entity";
 import { Comments } from "./comments.entity";
+import { Images } from "./images.entity";
 
 @Entity("announcement")
 export class Announcements {
