@@ -9,7 +9,10 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
+import { Addresses } from "./addresses.entity";
 
 @Entity("users")
 export class Users {
@@ -62,4 +65,8 @@ export class Users {
       this.password = await hash(this.password, 10);
     }
   }
+
+  @OneToOne(() => Addresses, (address) => address.user)
+  @JoinColumn()
+  address: Addresses;
 }
