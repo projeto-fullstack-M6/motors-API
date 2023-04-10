@@ -5,7 +5,7 @@ export const createUserSerializer = z.object({
   email: z.string().trim().email("Invalid email format").min(10),
   cpf: z.string().trim().min(11).max(11),
   cellPhone: z.string().trim().min(11),
-  bithdate: z.string().trim().min(8),
+  birthdate: z.string().trim().min(8),
   password: z
     .string()
     .trim()
@@ -14,9 +14,9 @@ export const createUserSerializer = z.object({
     .regex(/(\d)/, "Must contain a number")
     .regex(/(\W)|_/, "Must contain a special character")
     .regex(/.{8,}/, "Must contain at least 8 characters"),
-  description: z.string().trim().nullable(),
-  isAdm: z.boolean(),
-  isBuyer: z.boolean(),
+  description: z.string().trim().nullable().optional(),
+  isAdm: z.boolean().optional(),
+  isBuyer: z.boolean().optional(),
 });
 
 export const userResponseSerializer = createUserSerializer

@@ -40,7 +40,7 @@ export class Users {
   password: string;
 
   @Column({ type: "text", nullable: true })
-  description: string;
+  description: string | null;
 
   @Column({ default: true })
   isAdm: boolean;

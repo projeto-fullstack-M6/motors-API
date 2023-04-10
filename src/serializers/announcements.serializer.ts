@@ -10,7 +10,7 @@ export const createAnnouncementSerializer = z.object({
   color: z.string().min(2).trim(),
   fipePrice: z.string().min(2).trim(),
   price: z.string().min(2).trim(),
-  description: z.string().trim().nullable(),
+  description: z.string().trim().nullable().optional(),
   isGoodToSale: z.boolean(),
 });
 
