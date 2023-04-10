@@ -34,7 +34,7 @@ export const createAnnouncementsService = async (
     km,
     model,
     price,
-    user: user ? user : undefined,
+    user: user!,
   });
   await announcementRepository.save(announcement);
 
