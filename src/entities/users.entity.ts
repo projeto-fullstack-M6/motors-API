@@ -68,7 +68,9 @@ export class Users {
     }
   }
 
-  @OneToOne(() => Addresses, (address) => address.user)
+  @OneToOne(() => Addresses, {
+    eager: true,
+  })
   @JoinColumn()
   address: Addresses;
 

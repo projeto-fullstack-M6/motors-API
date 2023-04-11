@@ -1,19 +1,29 @@
+import { Addresses } from "../../entities/addresses.entity";
 import { Users } from "../../entities/users.entity";
-import { IUserRequest, IUserResponse } from "../../interfaces";
+import { IAddressRequest, IUserRequest, IUserResponse } from "../../interfaces";
 import appDataSource from "./../../data-source";
 
-export const createUserService = async ({
-  name,
-  email,
-  cpf,
-  birthdate,
-  cellPhone,
-  description,
-  isBuyer,
-  password,
-  isAdm,
-}: IUserRequest): Promise<IUserResponse> => {
+export const createUserService = async (
+  {
+    name,
+    email,
+    cpf,
+    birthdate,
+    cellPhone,
+    description,
+    isBuyer,
+    password,
+    isAdm,
+  }: IUserRequest,
+  address: IAddressRequest
+): Promise<IUserResponse> => {
   const userRepository = appDataSource.getRepository(Users);
+  const addressRepository = appDataSource.getRepository(Addresses);
+
+  if (address) {
+    address = addressRepository.create({ ...address });
+    await addressRepository.save(address);
+  }
 
   const user = userRepository.create({
     name,
@@ -25,6 +35,7 @@ export const createUserService = async ({
     isBuyer,
     password,
     isAdm,
+    address,
   });
 
   await userRepository.save(user);
