@@ -7,7 +7,11 @@ export const createAddressSerializer = z.object({
   city: z.string().min(2).trim(),
   street: z.string().min(2).trim(),
   number: z.string().min(1).trim(),
-  complement: z.string().trim().nullable(),
+  complement: z
+    .string()
+    .nullable()
+    .optional()
+    .transform((value) => (value === null ? "" : value)),
 });
 
 export const addressResponseSerializer = createAddressSerializer.extend({

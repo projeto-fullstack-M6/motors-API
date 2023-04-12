@@ -1,4 +1,11 @@
 import { createAnnouncementsService } from "./createAnnouncements.service";
-import { deleteAnnouncementService } from "./deleteAnnouncements.service";
+import { listAnnouncementsService } from "./listAnnouncements.service";
+import { listOneAnnouncementService } from "./listOneAnnouncement.service";
+import { updateAnnouncementsService } from "./updateAnnouncements.service";
 
-export { createAnnouncementsService, deleteAnnouncementService };
+export {
+  createAnnouncementsService,
+  listOneAnnouncementService,
+  listAnnouncementsService,
+  updateAnnouncementsService,
+};

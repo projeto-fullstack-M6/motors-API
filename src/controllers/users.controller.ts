@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { createAddressSerializer } from "../serializers/addresses.serializer";
 import {
   createUserSerializer,
   updateUserSerializer,
@@ -13,8 +14,16 @@ import {
 } from "../services/users";
 
 export const createUserController = async (req: Request, res: Response) => {
-  const user = req.body;
-  const newUser = await createUserService(createUserSerializer.parse(user));
+  const { address, ...user } = req.body;
+
+  if (address) {
+    createAddressSerializer.parse(address);
+  }
+
+  const newUser = await createUserService(
+    createUserSerializer.parse(user),
+    address
+  );
   return res.status(201).json(userResponseSerializer.parse(newUser));
 };
 

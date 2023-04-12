@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  addressResponseSerializer,
+  createAddressSerializer,
+} from "./addresses.serializer";
 
 export const createUserSerializer = z.object({
   name: z.string().min(2).trim(),
@@ -17,6 +21,7 @@ export const createUserSerializer = z.object({
   description: z.string().trim().nullable().optional(),
   isAdm: z.boolean().optional(),
   isBuyer: z.boolean().optional(),
+  address: createAddressSerializer.nullable().optional(),
 });
 
 export const userResponseSerializer = createUserSerializer
