@@ -1,0 +1,9 @@
+
+/coverage
+/build
+.DS_Store
+.env
+yarn.lock
+.vercel
+node_modules/
+dist
