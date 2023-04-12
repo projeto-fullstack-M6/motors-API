@@ -3,7 +3,10 @@ import {
   announcementResponseSerializer,
   createAnnouncementSerializer,
 } from "../serializers/announcements.serializer";
-import { createAnnouncementsService } from "../services/announcements";
+import {
+  createAnnouncementsService,
+  deleteAnnouncementService,
+} from "../services/announcements";
 
 export const createAnnouncemnetsController = async (
   req: Request,
@@ -19,4 +22,13 @@ export const createAnnouncemnetsController = async (
   return res
     .status(201)
     .json(announcementResponseSerializer.parse(newAnnouncement));
+};
+
+export const deleteAnnouncementController = async (
+  req: Request,
+  res: Response
+) => {
+  const announcementToDeleteId = req.params.id;
+  await deleteAnnouncementService(announcementToDeleteId);
+  return res.status(204).send();
 };
