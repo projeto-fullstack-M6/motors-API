@@ -40,7 +40,7 @@ export class Users {
   password: string;
 
   @Column({ type: "text", nullable: true })
-  description: string;
+  description: string | null;
 
   @Column({ default: true })
   isAdm: boolean;
@@ -68,7 +68,9 @@ export class Users {
     }
   }
 
-  @OneToOne(() => Addresses, (address) => address.user)
+  @OneToOne(() => Addresses, {
+    eager: true,
+  })
   @JoinColumn()
   address: Addresses;
 

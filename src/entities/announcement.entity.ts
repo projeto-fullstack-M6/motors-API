@@ -28,8 +28,11 @@ export class Announcements {
   @Column({ length: 50 })
   fuel: string;
 
+  @Column({ length: 50 })
+  color: string;
+
   @Column({ type: "decimal", precision: 15, scale: 2, default: 0 })
-  km: number;
+  km: string | number;
 
   @Column({ length: 50 })
   fipePrice: string;
@@ -38,7 +41,7 @@ export class Announcements {
   price: string;
 
   @Column({ type: "text", nullable: true })
-  description: string;
+  description: string | null;
 
   @Column({ default: true })
   isActive: boolean;

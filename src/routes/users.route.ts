@@ -1,13 +1,21 @@
 import { Router } from "express";
+import {
+  createUserController,
+  deleteUserController,
+  listOneUserController,
+  listUsersController,
+  updateUserController,
+} from "../controllers/users.controller";
+import { AuthMiddleware } from "../middlewares";
 
 export const usersRouter = Router();
 
-usersRouter.get("");
+usersRouter.get("", AuthMiddleware, listUsersController);
 
-usersRouter.get("/:id");
+usersRouter.get("/:id", listOneUserController);
 
-usersRouter.post("");
+usersRouter.post("", createUserController);
 
-usersRouter.patch("/:id");
+usersRouter.patch("/:id", updateUserController);
 
-usersRouter.delete("/:id");
+usersRouter.delete("/:id", deleteUserController);

@@ -1,3 +1,5 @@
+import { announcementsRouter } from "./announcements.route";
 import { usersRouter } from "./users.route";
+import { sessionsRouter } from "./sessions.route";
 
-export { usersRouter };
+export { usersRouter, announcementsRouter, sessionsRouter };

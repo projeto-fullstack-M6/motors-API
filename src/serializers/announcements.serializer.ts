@@ -6,11 +6,11 @@ export const createAnnouncementSerializer = z.object({
   model: z.string().min(2).trim(),
   year: z.number().min(4),
   fuel: z.string().min(2).trim(),
-  km: z.number().min(2),
+  km: z.string().min(2),
   color: z.string().min(2).trim(),
   fipePrice: z.string().min(2).trim(),
   price: z.string().min(2).trim(),
-  description: z.string().trim().nullable(),
+  description: z.string().trim().nullable().optional(),
   isGoodToSale: z.boolean(),
 });
 
