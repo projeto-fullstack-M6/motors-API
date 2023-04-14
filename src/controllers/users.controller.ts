@@ -49,10 +49,12 @@ export const listUsersController = async (req: Request, res: Response) => {
 export const updateUserController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const user = req.body;
+  const { address } = user;
 
   const updatedUser = await updateUserService(
     id,
-    updateUserSerializer.parse(user)
+    updateUserSerializer.parse(user),
+    address
   );
   return res.status(200).json(userResponseSerializer.parse(updatedUser));
 };
