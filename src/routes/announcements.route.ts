@@ -2,6 +2,9 @@ import { Router } from "express";
 import {
   createAnnouncemnetsController,
   deleteAnnouncementController,
+  listAnnouncementController,
+  listOneAnnouncementController,
+  updateAnnouncementController,
 } from "../controllers/announcements.controller";
 import { AuthMiddleware } from "../middlewares";
 import { ensureAnnoucementExistsMiddleware } from "../middlewares/announcement/ensureAnnouncementExists.middleware";
@@ -9,10 +12,22 @@ import { ensureAnnoucementItsActiveMiddleware } from "../middlewares/announcemen
 
 export const announcementsRouter = Router();
 
-announcementsRouter.get("");
-announcementsRouter.get("/:id");
+announcementsRouter.get("", AuthMiddleware, listAnnouncementController);
+announcementsRouter.get(
+  "/:id",
+  AuthMiddleware,
+  ensureAnnoucementItsActiveMiddleware,
+  ensureAnnoucementExistsMiddleware,
+  listOneAnnouncementController
+);
 announcementsRouter.post("", AuthMiddleware, createAnnouncemnetsController);
-announcementsRouter.patch("/:id");
+announcementsRouter.patch(
+  "/:id",
+  AuthMiddleware,
+  ensureAnnoucementItsActiveMiddleware,
+  ensureAnnoucementExistsMiddleware,
+  updateAnnouncementController
+);
 announcementsRouter.delete(
   "/:id",
   AuthMiddleware,
