@@ -6,6 +6,9 @@ import {
 import {
   createAnnouncementsService,
   deleteAnnouncementService,
+  listAnnouncementsService,
+  listOneAnnouncementService,
+  updateAnnouncementsService,
 } from "../services/announcements";
 
 export const createAnnouncemnetsController = async (
@@ -22,6 +25,36 @@ export const createAnnouncemnetsController = async (
   return res
     .status(201)
     .json(announcementResponseSerializer.parse(newAnnouncement));
+};
+
+export const listAnnouncementController = async (
+  req: Request,
+  res: Response
+) => {
+  const announcements = await listAnnouncementsService();
+  return res.status(200).json(announcements);
+};
+
+export const listOneAnnouncementController = async (
+  req: Request,
+  res: Response
+) => {
+  const announcementId = req.params.id;
+  const announcement = await listOneAnnouncementService(announcementId);
+  return res.status(200).json(announcement);
+};
+
+export const updateAnnouncementController = async (
+  req: Request,
+  res: Response
+) => {
+  const updateAnnouncementData = req.body;
+  const announcementId = req.params.id;
+  const announcementUpdated = await updateAnnouncementsService(
+    announcementId,
+    updateAnnouncementData
+  );
+  return res.status(200).json(announcementUpdated);
 };
 
 export const deleteAnnouncementController = async (
