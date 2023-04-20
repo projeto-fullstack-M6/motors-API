@@ -23,5 +23,15 @@ export const announcementResponseSerializer =
     user: userResponseSerializer,
   });
 
+export const severalAnnouncementsResponseSerializer =
+  createAnnouncementSerializer
+    .extend({
+      id: z.string().uuid(),
+      isActive: z.boolean(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
+    })
+    .array();
+
 export const updateAnnouncementSerializer =
   createAnnouncementSerializer.partial();

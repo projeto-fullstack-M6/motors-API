@@ -3,19 +3,39 @@ import {
   createUserController,
   deleteUserController,
   listOneUserController,
+  listUserOwnProfileController,
   listUsersController,
   updateUserController,
 } from "../controllers/users.controller";
-import { AuthMiddleware } from "../middlewares";
+import { AuthMiddleware, isAdmMiddleware } from "../middlewares";
+import { ensureIsYourOwnProfileOrIsAdmMiddleware } from "../middlewares/users/ensureIsYourOwnProfileOrIsAdm.middleware";
+import { ensureUserExistsMiddleware } from "../middlewares/users/ensureUserExists.middleware";
 
 export const usersRouter = Router();
 
-usersRouter.get("", AuthMiddleware, listUsersController);
+usersRouter.get("", AuthMiddleware, isAdmMiddleware, listUsersController);
 
-usersRouter.get("/:id", listOneUserController);
+usersRouter.get(
+  "/:id",
+  ensureUserExistsMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  listOneUserController
+);
+
+usersRouter.get("/own/profile", AuthMiddleware, listUserOwnProfileController);
 
 usersRouter.post("", createUserController);
 
-usersRouter.patch("/:id", updateUserController);
+usersRouter.patch(
+  "/:id",
+  ensureUserExistsMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  updateUserController
+);
 
-usersRouter.delete("/:id", deleteUserController);
+usersRouter.delete(
+  "/:id",
+  ensureUserExistsMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  deleteUserController
+);

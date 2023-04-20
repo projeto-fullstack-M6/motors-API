@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createAnnouncemnetsController,
   deleteAnnouncementController,
+  listAllSpecifUserAnnouncementsController,
   listAnnouncementController,
   listOneAnnouncementController,
   updateAnnouncementController,
@@ -19,6 +20,11 @@ announcementsRouter.get(
   ensureAnnoucementItsActiveMiddleware,
   ensureAnnoucementExistsMiddleware,
   listOneAnnouncementController
+);
+announcementsRouter.get(
+  "/user/specif",
+  AuthMiddleware,
+  listAllSpecifUserAnnouncementsController
 );
 announcementsRouter.post("", AuthMiddleware, createAnnouncemnetsController);
 announcementsRouter.patch(
