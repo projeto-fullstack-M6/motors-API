@@ -9,6 +9,7 @@ import {
   listAnnouncementsService,
   listOneAnnouncementService,
   updateAnnouncementsService,
+  listAllSpecifUserAnnouncementsService,
 } from "../services/announcements";
 
 export const createAnnouncemnetsController = async (
@@ -31,8 +32,9 @@ export const listAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const announcements = await listAnnouncementsService();
-  return res.status(200).json(announcements);
+  const queryData: any = req.query.page;
+  const announcements = await listAnnouncementsService(parseInt(queryData));
+  return res.status(200).send(announcements);
 };
 
 export const listOneAnnouncementController = async (
@@ -42,6 +44,19 @@ export const listOneAnnouncementController = async (
   const announcementId = req.params.id;
   const announcement = await listOneAnnouncementService(announcementId);
   return res.status(200).json(announcement);
+};
+
+export const listAllSpecifUserAnnouncementsController = async (
+  req: Request,
+  res: Response
+) => {
+  const userId: string = req.user.id;
+  const queryData: any = req.query.page;
+  const specifAnnouncements = await listAllSpecifUserAnnouncementsService(
+    userId,
+    parseInt(queryData)
+  );
+  return res.status(200).send(specifAnnouncements);
 };
 
 export const updateAnnouncementController = async (

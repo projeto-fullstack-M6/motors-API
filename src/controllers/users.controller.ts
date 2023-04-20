@@ -9,6 +9,7 @@ import {
   createUserService,
   deleteUserService,
   listOneUserService,
+  listUserOwnProfileService,
   listUsersService,
   updateUserService,
 } from "../services/users";
@@ -44,6 +45,16 @@ export const listOneUserController = async (req: Request, res: Response) => {
 export const listUsersController = async (req: Request, res: Response) => {
   const users = await listUsersService();
   return res.status(200).json(userResponseSerializer.array().parse(users));
+};
+
+export const listUserOwnProfileController = async (
+  req: Request,
+  res: Response
+) => {
+  const userId = req.user.id;
+  console.log(userId);
+  const userOwnProfile = await listUserOwnProfileService(userId);
+  return res.status(200).json(userResponseSerializer.parse(userOwnProfile));
 };
 
 export const updateUserController = async (req: Request, res: Response) => {
