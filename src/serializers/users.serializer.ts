@@ -19,7 +19,6 @@ export const createUserSerializer = z.object({
     .regex(/(\W)|_/, "Must contain a special character")
     .regex(/.{8,}/, "Must contain at least 8 characters"),
   description: z.string().trim().nullable().optional(),
-  isAdm: z.boolean().optional(),
   isBuyer: z.boolean().optional(),
   address: createAddressSerializer.nullable().optional(),
 });
