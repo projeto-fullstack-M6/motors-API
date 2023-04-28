@@ -1,8 +1,8 @@
 import { z } from "zod";
 import {
-  createUserSerializer,
-  updateUserSerializer,
-  userResponseSerializer,
+	createUserSerializer,
+	updateUserSerializer,
+	userResponseSerializer,
 } from "../serializers/users.serializer";
 
 type IUserRequest = z.infer<typeof createUserSerializer>;
