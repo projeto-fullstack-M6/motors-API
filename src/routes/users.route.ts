@@ -7,6 +7,7 @@ import {
 	listUsersController,
 	updateUserController,
 	sendResetEmailController,
+	resetPasswordController,
 } from "../controllers/users.controller";
 import { AuthMiddleware, isAdmMiddleware } from "../middlewares";
 import { ensureIsYourOwnProfileOrIsAdmMiddleware } from "../middlewares/users/ensureIsYourOwnProfileOrIsAdm.middleware";
@@ -42,3 +43,5 @@ usersRouter.delete(
 );
 
 usersRouter.post("/reset-password", sendResetEmailController);
+
+usersRouter.post("/reset-password/:token", resetPasswordController);

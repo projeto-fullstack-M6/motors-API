@@ -13,6 +13,7 @@ import {
 	listUsersService,
 	updateUserService,
 	sendResetEmailService,
+	resetPasswordService,
 } from "../services/users";
 
 export const createUserController = async (req: Request, res: Response) => {
@@ -79,4 +80,13 @@ export const sendResetEmailController = async (req: Request, res: Response) => {
 	await sendResetEmailService(email, protocol, host!);
 
 	return res.json({ message: "Email sent" });
+};
+
+export const resetPasswordController = async (req: Request, res: Response) => {
+	const { token } = req.params;
+	const { password } = req.body;
+
+	await resetPasswordService(password, token);
+
+	return res.json({ message: "Password changed successfully" });
 };

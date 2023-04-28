@@ -5,6 +5,7 @@ import { listUsersService } from "./listUsers.service";
 import { updateUserService } from "./updateUser.service";
 import { listUserOwnProfileService } from "./listUserOwnProfile.service";
 import { sendResetEmailService } from "./sendResetEmail.service";
+import { resetPasswordService } from "./resetPassword.service";
 
 export {
 	createUserService,
@@ -14,4 +15,5 @@ export {
 	listUserOwnProfileService,
 	updateUserService,
 	sendResetEmailService,
+	resetPasswordService,
 };
