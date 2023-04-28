@@ -1,16 +1,16 @@
 import { hash } from "bcryptjs";
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  BeforeInsert,
-  BeforeUpdate,
-  OneToMany,
-  OneToOne,
-  JoinColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	CreateDateColumn,
+	UpdateDateColumn,
+	DeleteDateColumn,
+	BeforeInsert,
+	BeforeUpdate,
+	OneToMany,
+	OneToOne,
+	JoinColumn,
 } from "typeorm";
 import { Addresses } from "./addresses.entity";
 import { Announcements } from "./announcement.entity";
@@ -18,65 +18,68 @@ import { Comments } from "./comments.entity";
 
 @Entity("users")
 export class Users {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+	@PrimaryGeneratedColumn("uuid")
+	id: string;
 
-  @Column({ length: 150 })
-  name: string;
+	@Column({ length: 150 })
+	name: string;
 
-  @Column({ length: 100, unique: true })
-  email: string;
+	@Column({ length: 100, unique: true })
+	email: string;
 
-  @Column({ length: 11, unique: true })
-  cpf: string;
+	@Column({ length: 11, unique: true })
+	cpf: string;
 
-  @Column({ length: 11, unique: true })
-  cellPhone: string;
+	@Column({ length: 11, unique: true })
+	cellPhone: string;
 
-  @Column({ length: 8 })
-  birthdate: string;
+	@Column({ length: 8 })
+	birthdate: string;
 
-  @Column({ length: 250 })
-  password: string;
+	@Column({ length: 250 })
+	password: string;
 
-  @Column({ type: "text", nullable: true })
-  description: string | null;
+	@Column({ type: "text", nullable: true })
+	description: string | null;
 
-  @Column({ default: true })
-  isAdm: boolean;
+	@Column({ default: true })
+	isAdm: boolean;
 
-  @Column({ default: true })
-  isActive: boolean;
+	@Column({ default: true })
+	isActive: boolean;
 
-  @Column({ default: true })
-  isBuyer: boolean;
+	@Column({ default: true })
+	isBuyer: boolean;
 
-  @CreateDateColumn()
-  createdAt: Date;
+	@CreateDateColumn()
+	createdAt: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+	@Column({ nullable: true })
+	resetToken: string;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
+	@UpdateDateColumn()
+	updatedAt: Date;
 
-  @BeforeUpdate()
-  @BeforeInsert()
-  async hashPassword() {
-    if (this.password) {
-      this.password = await hash(this.password, 10);
-    }
-  }
+	@DeleteDateColumn()
+	deletedAt: Date;
 
-  @OneToOne(() => Addresses, {
-    eager: true,
-  })
-  @JoinColumn()
-  address: Addresses;
+	@BeforeUpdate()
+	@BeforeInsert()
+	async hashPassword() {
+		if (this.password) {
+			this.password = await hash(this.password, 10);
+		}
+	}
 
-  @OneToMany(() => Announcements, (announcement) => announcement.user)
-  announcement: Announcements[];
+	@OneToOne(() => Addresses, {
+		eager: true,
+	})
+	@JoinColumn()
+	address: Addresses;
 
-  @OneToMany(() => Comments, (comment) => comment.user)
-  comment: Comments[];
+	@OneToMany(() => Announcements, (announcement) => announcement.user)
+	announcement: Announcements[];
+
+	@OneToMany(() => Comments, (comment) => comment.user)
+	comment: Comments[];
 }
