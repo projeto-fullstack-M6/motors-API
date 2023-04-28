@@ -10,6 +10,7 @@ import {
 import { AuthMiddleware } from "../middlewares";
 import { ensureAnnoucementExistsMiddleware } from "../middlewares/announcement/ensureAnnouncementExists.middleware";
 import { ensureAnnoucementItsActiveMiddleware } from "../middlewares/announcement/ensureAnnouncementItsActive.middleware";
+import { verifyCarGoodSaleMiddleware } from "../middlewares/announcement/verifyCarGoodSale.middleware";
 
 export const announcementsRouter = Router();
 
@@ -26,7 +27,12 @@ announcementsRouter.get(
   AuthMiddleware,
   listAllSpecifUserAnnouncementsController
 );
-announcementsRouter.post("", AuthMiddleware, createAnnouncemnetsController);
+announcementsRouter.post(
+  "",
+  AuthMiddleware,
+  verifyCarGoodSaleMiddleware,
+  createAnnouncemnetsController
+);
 announcementsRouter.patch(
   "/:id",
   AuthMiddleware,
