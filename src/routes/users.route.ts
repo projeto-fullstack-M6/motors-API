@@ -29,13 +29,13 @@ usersRouter.post("", createUserController);
 usersRouter.patch(
   "/:id",
   ensureUserExistsMiddleware,
-  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  // ensureIsYourOwnProfileOrIsAdmMiddleware,
   updateUserController
 );
 
 usersRouter.delete(
   "/:id",
   ensureUserExistsMiddleware,
-  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  // ensureIsYourOwnProfileOrIsAdmMiddleware,
   deleteUserController
 );

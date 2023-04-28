@@ -13,7 +13,6 @@ export const createUserService = async (
     description,
     isBuyer,
     password,
-    isAdm,
   }: IUserRequest,
   address: IAddressRequest
 ): Promise<IUserResponse> => {
@@ -34,7 +33,6 @@ export const createUserService = async (
     description,
     isBuyer,
     password,
-    isAdm,
     address,
   });
 
