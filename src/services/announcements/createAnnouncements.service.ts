@@ -23,7 +23,7 @@ export const createAnnouncementsService = async (
 
   const user = await userRepository.findOneBy({ id: userId });
 
-  const dataFipePrice = parseInt(fipePrice);
+  const dataFipePrice = parseInt(fipePrice!);
   const dataPrice = parseInt(price);
   const fivePercent = dataFipePrice * (5 / 100);
   const isGoodSale = dataFipePrice - fivePercent;
