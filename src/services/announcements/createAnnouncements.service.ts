@@ -11,10 +11,10 @@ export const createAnnouncementsService = async (
     fipePrice,
     year,
     fuel,
-    isGoodToSale,
     km,
     model,
     price,
+    images,
   }: IAnnoucementRequest,
   userId: string
 ) => {
@@ -23,6 +23,12 @@ export const createAnnouncementsService = async (
 
   const user = await userRepository.findOneBy({ id: userId });
 
+  const dataFipePrice = parseInt(fipePrice);
+  const dataPrice = parseInt(price);
+  const fivePercent = dataFipePrice * (5 / 100);
+  const isGoodSale = dataFipePrice - fivePercent;
+  const isGoodToSale = dataPrice > isGoodSale ? false : true;
+
   const announcement = await announcementRepository.create({
     brand,
     color,
@@ -30,11 +36,12 @@ export const createAnnouncementsService = async (
     fipePrice,
     year,
     fuel,
-    isGoodToSale,
     km,
     model,
     price,
+    isGoodToSale,
     user: user!,
+    images: images,
   });
   await announcementRepository.save(announcement);
 

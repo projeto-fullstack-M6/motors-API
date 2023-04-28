@@ -18,7 +18,6 @@ export const createAnnouncemnetsController = async (
 ) => {
   const announcement = req.body;
   const userId = req.user.id;
-
   const newAnnouncement = await createAnnouncementsService(
     createAnnouncementSerializer.parse(announcement),
     userId

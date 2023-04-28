@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import { Users } from "./users.entity";
 import { Comments } from "./comments.entity";
-import { Images } from "./images.entity";
+// import { Images } from "./images.entity";
 
 @Entity("announcement")
 export class Announcements {
@@ -23,8 +23,8 @@ export class Announcements {
   @Column({ length: 50 })
   model: string;
 
-  @Column({ type: "integer" })
-  year: number;
+  @Column({ length: 4 })
+  year: string;
 
   @Column({ length: 50 })
   fuel: string;
@@ -47,7 +47,7 @@ export class Announcements {
   @Column({ default: true })
   isActive: boolean;
 
-  @Column({ default: true })
+  @Column({ nullable: true })
   isGoodToSale: boolean;
 
   @CreateDateColumn()
@@ -65,6 +65,6 @@ export class Announcements {
   @OneToMany(() => Comments, (comment) => comment.announcement)
   comment: Comments[];
 
-  @OneToMany(() => Images, (image) => image.announcement)
-  image: Images[];
+  @Column({ type: "text", array: true, default: "{}", nullable: true })
+  images: string[];
 }
