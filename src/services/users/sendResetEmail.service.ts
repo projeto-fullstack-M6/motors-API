@@ -1,35 +1,34 @@
-import { randomUUID } from "node:crypto";
 import appDataSource from "../../data-source";
 import { Users } from "../../entities/users.entity";
 import { AppError } from "../../errors/AppErrors";
 import { resetPasswordTemplate, sendEmail } from "../../utils/sendEmail.utils";
 
 export const sendResetEmailService = async (
-	email: string,
-	protocol: string,
-	host: string
+  email: string,
+  protocol: string,
+  host: string
 ) => {
-	const userRepository = appDataSource.getRepository(Users);
+  const userRepository = appDataSource.getRepository(Users);
 
-	const user = await userRepository.findOneBy({ email });
+  const user = await userRepository.findOneBy({ email });
 
-	if (!user) {
-		throw new AppError("User not found", 404);
-	}
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
 
-	const generatedToken = randomUUID();
+  const generatedToken = crypto.randomUUID();
 
-	await userRepository.update(user.id, {
-		resetToken: generatedToken,
-	});
+  await userRepository.update(user.id, {
+    resetToken: generatedToken,
+  });
 
-	const resetPass = resetPasswordTemplate(
-		email,
-		user.name,
-		protocol,
-		host,
-		generatedToken
-	);
+  const resetPass = resetPasswordTemplate(
+    email,
+    user.name,
+    protocol,
+    host,
+    generatedToken
+  );
 
-	await sendEmail(resetPass);
+  await sendEmail(resetPass);
 };
