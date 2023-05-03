@@ -58,7 +58,7 @@ export const resetPasswordTemplate = (
 				button: {
 					color: "#22BC66",
 					text: "Redefinir minha senha",
-					link: `https://motors-shop-smoky.vercel.app/login/reset-password/${resetToken}`,
+					link: `https://motors-shop-smoky.vercel.app/reset-password/${resetToken}`,
 					// link: `http://localhost:3000/reset-password/${resetToken}`,
 				},
 			},
