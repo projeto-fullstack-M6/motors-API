@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import { v4 as uuidv4 } from "uuid"
 import appDataSource from "../../data-source";
 import { Users } from "../../entities/users.entity";
 import { AppError } from "../../errors/AppErrors";
@@ -17,7 +17,7 @@ export const sendResetEmailService = async (
     throw new AppError("User not found", 404);
   }
 
-  const generatedToken = crypto.randomUUID();
+  const generatedToken = uuidv4();
 
   await userRepository.update(user.id, {
     resetToken: generatedToken,
