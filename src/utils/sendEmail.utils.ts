@@ -58,7 +58,7 @@ export const resetPasswordTemplate = (
 				button: {
 					color: "#22BC66",
 					text: "Redefinir minha senha",
-					link: `${protocol}://${host}/users/reset-password/${resetToken}`,
+					link: `https://motors-api.vercel.app/reset-password/${resetToken}`,
 				},
 			},
 			outro: "Se você não solicitou uma redefinição de senha, ignore este email.",
