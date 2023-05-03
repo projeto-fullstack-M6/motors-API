@@ -18,6 +18,7 @@ export const handleError = async (
       message: JSON.parse(error.message),
     });
   }
+  console.log(error)
   return res.status(500).json({
     message: error.message,
   });
