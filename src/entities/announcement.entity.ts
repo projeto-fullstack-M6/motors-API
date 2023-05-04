@@ -33,7 +33,7 @@ export class Announcements {
   color: string;
 
   @Column({ type: "decimal", precision: 15, scale: 2, default: 0 })
-  km: string | number;
+  km: string;
 
   @Column({ length: 50 })
   fipePrice: string;

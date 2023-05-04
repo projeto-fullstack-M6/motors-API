@@ -15,6 +15,7 @@ import { verifyCarGoodSaleMiddleware } from "../middlewares/announcement/verifyC
 export const announcementsRouter = Router();
 
 announcementsRouter.get("", AuthMiddleware, listAnnouncementController);
+
 announcementsRouter.get(
   "/:id",
   AuthMiddleware,
@@ -22,17 +23,20 @@ announcementsRouter.get(
   ensureAnnoucementExistsMiddleware,
   listOneAnnouncementController
 );
+
 announcementsRouter.get(
   "/user/specif",
   AuthMiddleware,
   listAllSpecifUserAnnouncementsController
 );
+
 announcementsRouter.post(
   "",
   AuthMiddleware,
   verifyCarGoodSaleMiddleware,
   createAnnouncemnetsController
 );
+
 announcementsRouter.patch(
   "/:id",
   AuthMiddleware,
@@ -40,6 +44,7 @@ announcementsRouter.patch(
   ensureAnnoucementExistsMiddleware,
   updateAnnouncementController
 );
+
 announcementsRouter.delete(
   "/:id",
   AuthMiddleware,
