@@ -1,7 +1,12 @@
 import { Router } from "express";
-import { createCommentsController } from "../controllers/comments.controller";
+import {
+  createCommentsController,
+  listCommentsController,
+} from "../controllers/comments.controller";
 import { AuthMiddleware } from "../middlewares";
 
 export const commentsRouter = Router();
 
 commentsRouter.post("/:id", AuthMiddleware, createCommentsController);
+
+commentsRouter.get("/", listCommentsController);
