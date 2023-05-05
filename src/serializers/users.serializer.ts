@@ -32,6 +32,7 @@ export const userResponseSerializer = createUserSerializer
     createdAt: z.date(),
     updatedAt: z.date(),
     deletedAt: z.date().nullable(),
+    resetToken: z.string().nullable(),
   })
   .omit({ password: true });
 

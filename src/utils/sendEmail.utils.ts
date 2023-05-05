@@ -7,6 +7,7 @@ export const sendEmail = async ({ to, subject, text }: i.SendEmailRequest) => {
   const transporter = createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
+    secure: false,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -57,7 +58,8 @@ export const resetPasswordTemplate = (
         button: {
           color: "#22BC66",
           text: "Redefinir minha senha",
-          link: `${protocol}://${host}/users/reset-password/${resetToken}`,
+          link: `https://motors-shop-smoky.vercel.app/reset-password/${resetToken}`,
+          // link: `http://localhost:3000/reset-password/${resetToken}`,
         },
       },
       outro:
