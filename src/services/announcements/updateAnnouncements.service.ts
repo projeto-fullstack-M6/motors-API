@@ -15,6 +15,7 @@ export const updateAnnouncementsService = async (
     km,
     model,
     price,
+    images,
   }: IAnnoucementUpdate
 ) => {
   const announcementRepository = appDataSource.getRepository(Announcements);
@@ -35,6 +36,7 @@ export const updateAnnouncementsService = async (
     km,
     model,
     price,
+    images,
   });
 
   const announcement = await announcementRepository.findOneBy({ id });

@@ -1,13 +1,13 @@
 import { Router } from "express";
 import {
-	createUserController,
-	deleteUserController,
-	listOneUserController,
-	listUserOwnProfileController,
-	listUsersController,
-	updateUserController,
-	sendResetEmailController,
-	resetPasswordController,
+  createUserController,
+  deleteUserController,
+  listOneUserController,
+  listUserOwnProfileController,
+  listUsersController,
+  updateUserController,
+  sendResetEmailController,
+  resetPasswordController,
 } from "../controllers/users.controller";
 import { AuthMiddleware, isAdmMiddleware } from "../middlewares";
 import { ensureIsYourOwnProfileOrIsAdmMiddleware } from "../middlewares/users/ensureIsYourOwnProfileOrIsAdm.middleware";
@@ -18,10 +18,11 @@ export const usersRouter = Router();
 usersRouter.get("", AuthMiddleware, isAdmMiddleware, listUsersController);
 
 usersRouter.get(
-	"/:id",
-	ensureUserExistsMiddleware,
-	ensureIsYourOwnProfileOrIsAdmMiddleware,
-	listOneUserController
+  "/:id",
+  AuthMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  ensureUserExistsMiddleware,
+  listOneUserController
 );
 
 usersRouter.get("/own/profile", AuthMiddleware, listUserOwnProfileController);
@@ -29,17 +30,19 @@ usersRouter.get("/own/profile", AuthMiddleware, listUserOwnProfileController);
 usersRouter.post("", createUserController);
 
 usersRouter.patch(
-	"/:id",
-	ensureUserExistsMiddleware,
-	// ensureIsYourOwnProfileOrIsAdmMiddleware,
-	updateUserController
+  "/:id",
+  AuthMiddleware,
+  ensureUserExistsMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  updateUserController
 );
 
 usersRouter.delete(
-	"/:id",
-	ensureUserExistsMiddleware,
-	// ensureIsYourOwnProfileOrIsAdmMiddleware,
-	deleteUserController
+  "/:id",
+  AuthMiddleware,
+  ensureUserExistsMiddleware,
+  ensureIsYourOwnProfileOrIsAdmMiddleware,
+  deleteUserController
 );
 
 usersRouter.post("/reset-password", sendResetEmailController);
