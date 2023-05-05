@@ -21,6 +21,8 @@ export const createUserSerializer = z.object({
   description: z.string().trim().nullable().optional(),
   isBuyer: z.boolean().optional(),
   address: createAddressSerializer.nullable().optional(),
+  resetToken: z.string().nullable().optional(),
+  isAdm: z.boolean().optional(),
 });
 
 export const userResponseSerializer = createUserSerializer

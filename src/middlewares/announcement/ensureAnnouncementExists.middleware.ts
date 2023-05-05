@@ -8,7 +8,7 @@ export const ensureAnnoucementExistsMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const announcementId = req.body.id;
+  const announcementId = req.params.id;
   const announcementRepository = appDataSource.getRepository(Announcements);
   const findAnnoucement = await announcementRepository.findOneBy({
     id: announcementId,

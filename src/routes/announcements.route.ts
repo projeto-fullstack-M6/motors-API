@@ -14,8 +14,7 @@ import { verifyCarGoodSaleMiddleware } from "../middlewares/announcement/verifyC
 
 export const announcementsRouter = Router();
 
-announcementsRouter.get("", AuthMiddleware, listAnnouncementController);
-
+announcementsRouter.get("", listAnnouncementController);
 announcementsRouter.get(
   "/:id",
   AuthMiddleware,
