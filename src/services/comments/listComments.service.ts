@@ -2,10 +2,17 @@ import appDataSource from "../../data-source";
 import { Comments } from "../../entities/comments.entity";
 import { ICommentsResponse } from "../../interfaces";
 
-export const listCommentsService = async (): Promise<ICommentsResponse[]> => {
+export const listCommentsService = async (
+  announcementsId: string
+): Promise<ICommentsResponse[]> => {
   const commentsRepository = appDataSource.getRepository(Comments);
 
   const commentsFound = await commentsRepository.find({
+    where: {
+      announcement: {
+        id: announcementsId,
+      },
+    },
     relations: {
       user: {
         address: true,

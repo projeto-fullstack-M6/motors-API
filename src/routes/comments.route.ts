@@ -9,4 +9,4 @@ export const commentsRouter = Router();
 
 commentsRouter.post("/:id", AuthMiddleware, createCommentsController);
 
-commentsRouter.get("/", listCommentsController);
+commentsRouter.get("/:id", listCommentsController);

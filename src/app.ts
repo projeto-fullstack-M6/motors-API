@@ -17,10 +17,7 @@ app.use(cors());
 
 app.use("/users", usersRouter);
 app.use("/sessions", sessionsRouter);
-// app.use("/profile");
-// app.use("/addresses");
 app.use("/comments", commentsRouter);
 app.use("/announcements", announcementsRouter);
-// app.use("/images");
 
 app.use(handleError);
