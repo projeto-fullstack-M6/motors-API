@@ -18,6 +18,7 @@ export const createCommentsController = async (req: Request, res: Response) => {
 };
 
 export const listCommentsController = async (req: Request, res: Response) => {
-  const comment = await listCommentsService();
+  const announcementsId: string = req.params.id;
+  const comment = await listCommentsService(announcementsId);
   return res.json(comment);
 };
