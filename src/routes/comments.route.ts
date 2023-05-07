@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createCommentsController,
+  deleteCommentsController,
   listCommentsController,
   updateCommentsController,
 } from "../controllers/comments.controller";
@@ -18,4 +19,11 @@ commentsRouter.patch(
   AuthMiddleware,
   CommentsOrAdOwnerMiddleware,
   updateCommentsController
+);
+
+commentsRouter.delete(
+  "/:id",
+  AuthMiddleware,
+  CommentsOrAdOwnerMiddleware,
+  deleteCommentsController
 );

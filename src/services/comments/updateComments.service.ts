@@ -1,8 +1,6 @@
 import { ICommentsRequest, ICommentsResponse } from "../../interfaces";
 import appDataSource from "../../data-source";
 import { Comments } from "../../entities/comments.entity";
-import { Users } from "../../entities/users.entity";
-import { Announcements } from "../../entities/announcement.entity";
 import { AppError } from "../../errors/AppErrors";
 
 export const updateCommentsService = async (
