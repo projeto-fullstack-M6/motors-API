@@ -8,6 +8,24 @@ export const listAnnouncementsService = async (queryData: number) => {
   const announcements = await appDataSource
     .getRepository(Announcements)
     .createQueryBuilder("announcements")
+    .leftJoin("announcements.user", "user")
+    .select([
+      "announcements",
+      "user.id",
+      "user.name",
+      "user.email",
+      "user.cpf",
+      "user.cellPhone",
+      "user.birthdate",
+      "user.description",
+      "user.isAdm",
+      "user.isActive",
+      "user.isBuyer",
+      "user.createdAt",
+      "user.resetToken",
+      "user.updatedAt",
+      "user.deletedAt",
+    ])
     .skip(howManyAnnouncementsToSkip)
     .take(16)
     .getMany();
