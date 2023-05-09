@@ -28,6 +28,7 @@ export const listAnnouncementsService = async (queryData: number) => {
     ])
     .skip(howManyAnnouncementsToSkip)
     .take(16)
+    .withDeleted()
     .getMany();
 
   const baseUrl = "http://localhost:3000/announcements";
