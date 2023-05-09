@@ -7,10 +7,14 @@ export const deleteAnnouncementService = async (
 ) => {
   const announcementRepository: Repository<Announcements> =
     appDataSource.getRepository(Announcements);
+
   const findAnnoucement = await announcementRepository.findOneBy({
     id: announcementToDeleteId,
   });
-  findAnnoucement!.isActive = false;
-  await announcementRepository.update(announcementToDeleteId, findAnnoucement!);
+
   await announcementRepository.softRemove(findAnnoucement!);
+  await announcementRepository.save({
+    ...findAnnoucement,
+    isActive: false,
+  });
 };

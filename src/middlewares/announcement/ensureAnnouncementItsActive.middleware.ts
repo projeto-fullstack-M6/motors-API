@@ -10,14 +10,18 @@ export const ensureAnnoucementItsActiveMiddleware = async (
 ) => {
   const announcementId = req.params.id;
   const announcementRepository = appDataSource.getRepository(Announcements);
+
   const announcements = await announcementRepository.find({
     withDeleted: true,
   });
+
   const announcementItsNotActive = announcements.find(
     (announcement) => announcement.id === announcementId
   );
+
   if (announcementItsNotActive && announcementItsNotActive.isActive === false) {
-    throw new AppError("Announcement is already inactive!", 403);
+    throw new AppError("Announcement is already inactive!", 400);
   }
+
   return next();
 };
