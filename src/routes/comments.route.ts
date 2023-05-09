@@ -17,13 +17,13 @@ commentsRouter.get("/:id", listCommentsController);
 commentsRouter.patch(
   "/:id",
   AuthMiddleware,
-  CommentsOrAdOwnerMiddleware,
+  // CommentsOrAdOwnerMiddleware,
   updateCommentsController
 );
 
 commentsRouter.delete(
   "/:id",
   AuthMiddleware,
-  CommentsOrAdOwnerMiddleware,
+  // CommentsOrAdOwnerMiddleware,
   deleteCommentsController
 );
